@@ -1,4 +1,4 @@
-package com.myapplication
+package com.mayka.talamyd
 
 import MainView
 import android.os.Bundle
