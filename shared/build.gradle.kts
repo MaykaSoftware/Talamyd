@@ -2,6 +2,10 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("org.jetbrains.compose")
+    id("kotlin-parcelize")
+    kotlin("plugin.serialization") version "1.9.0"
+    id("com.squareup.sqldelight")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -15,24 +19,60 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "shared"
             isStatic = true
+
+            export(libs.decompose)
+            export(libs.essenty.lifecycle)
+            export(libs.moko.resources)
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material)
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.ktor.client.serialization)
+                implementation(libs.ktor.client.auth)
+                implementation(libs.ktor.client.logging)
+                implementation(libs.sqldelight.runtime)
+                implementation(libs.kotlin.date.time)
+
+                implementation(libs.decompose)
+                implementation(libs.essenty.lifecycle)
+                implementation(libs.essenty.stateKeeper)
+                implementation(libs.essenty.instanceKeeper)
+                implementation(libs.reaktive)
+                implementation(libs.multi.settings)
+                implementation(libs.multi.settings.coroutines)
+                implementation(libs.security.crypto)
+
+                implementation(libs.decompose.extensions.compose.jetpack)
+                implementation(libs.decompose.extensions.compose.jetbrains)
+
+                implementation(libs.ktor.serialization.json)
+                implementation(libs.koin.core)
+
+                api(compose.runtime)
+                api(compose.foundation)
+                api(compose.material3)
+                api(compose.materialIconsExtended)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
             }
         }
         val androidMain by getting {
+            dependsOn(commonMain)
             dependencies {
-                api("androidx.activity:activity-compose:1.7.2")
-                api("androidx.appcompat:appcompat:1.6.1")
-                api("androidx.core:core-ktx:1.10.1")
+                api(libs.androidx.appcompat)
+                api(libs.activity.compose)
+                api(libs.androidx.core)
+
+                api(libs.ktor.client.android)
+                api(libs.ktor.client.okhttp)
+                api(libs.sqldelight.android.driver)
+
+                api(libs.decompose)
             }
         }
         val iosX64Main by getting
@@ -43,6 +83,12 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                api(libs.ktor.client.darwin)
+                api(libs.sqldelight.ios.native.driver)
+                api(libs.decompose)
+                implementation(libs.essenty.lifecycle)
+            }
         }
     }
 }
@@ -65,4 +111,17 @@ android {
     kotlin {
         jvmToolchain(17)
     }
+}
+
+dependencies {
+    implementation(libs.material3.core)
+    implementation(libs.androidx.ui)
+    commonMainApi(libs.moko.resources)
+    commonMainApi(libs.moko.resources.compose.ios)
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.mayka.talaamyd"
+    multiplatformResourcesClassName = "SharedRes"
+    disableStaticFrameworkWarning = true
 }
