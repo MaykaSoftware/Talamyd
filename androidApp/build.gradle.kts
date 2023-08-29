@@ -36,3 +36,7 @@ android {
         jvmToolchain(17)
     }
 }
+
+dependencies {
+    implementation(libs.koin.compose)
+}

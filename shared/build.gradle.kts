@@ -121,7 +121,7 @@ dependencies {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "com.mayka.talaamyd"
+    multiplatformResourcesPackage = "com.mayka.talamyd"
     multiplatformResourcesClassName = "SharedRes"
     disableStaticFrameworkWarning = true
 }

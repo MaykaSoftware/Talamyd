@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="app_name">Talaamyd</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Wachtwoord</string>
+    <string name="hint_username">Gebruikersnaam</string>
+    <string name="btn_label_login">Login</string>
+    <string name="btn_label_signout">Uitloggen</string>
+    <string name="btn_label_signup">Registreer</string>
+    <string name="label_no_account">Geen account?</string>
+    <string name="label_signup">Registreer</string>
+    <string name="label_tab_home">Home</string>
+    <string name="label_tab_price">Prijs</string>
+    <string name="label_tab_settings">Settings</string>
+</resources>
