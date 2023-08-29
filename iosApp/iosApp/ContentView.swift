@@ -3,17 +3,25 @@ import SwiftUI
 import shared
 
 struct ComposeView: UIViewControllerRepresentable {
+    private let lifecycle: LifecycleRegistry
+    private let topSafeArea: Float
+    private let bottomSafeArea: Float
+    
+    init(lifecycle: LifecycleRegistry, topSafeArea: Float, bottomSafeArea: Float) {
+        self.lifecycle = lifecycle
+        self.topSafeArea = topSafeArea
+        self.bottomSafeArea = bottomSafeArea
+    }
+    
     func makeUIViewController(context: Context) -> UIViewController {
-        Main_iosKt.MainViewController()
+        return Main_iosKt.MainViewController(
+            lifecycle: lifecycle,
+            topSafeArea: topSafeArea,
+            bottomSafeArea: bottomSafeArea
+        )
     }
 
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
-}
-
-struct ContentView: View {
-    var body: some View {
-        ComposeView()
-                .ignoresSafeArea(.all, edges: .bottom) // Compose has own keyboard handler
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
     }
 }
 
