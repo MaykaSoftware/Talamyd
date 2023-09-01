@@ -37,6 +37,7 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.mayka.talamyd.SharedRes
+import com.mayka.talamyd.home.ui.Home
 import com.mayka.talamyd.home.ui.HomeScreen
 import com.mayka.talamyd.main.component.TalamydTabComponent
 import com.mayka.talamyd.price.ui.PriceScreen
@@ -98,8 +99,10 @@ private fun Children(
         animation = stackAnimation(fade()),
     ) {
         when (val child = it.instance) {
-            is TalamydTabComponent.Child.HomeChild -> HomeScreen(
-                topBarActions = topBarActions
+            is TalamydTabComponent.Child.HomeChild -> Home(
+                topBarActions = topBarActions,
+                component = child.component
+
             )
 
             is TalamydTabComponent.Child.PricesChild -> PriceScreen(

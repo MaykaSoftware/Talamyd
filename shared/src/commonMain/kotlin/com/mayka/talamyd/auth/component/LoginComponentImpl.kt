@@ -10,7 +10,7 @@ import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.arkivanov.essenty.statekeeper.consume
 import com.badoo.reaktive.disposable.scope.DisposableScope
-import com.mayka.talamyd.auth.domain.usecase.SignInUseCase
+import com.mayka.talamyd.auth.domain.SignInUseCase
 import com.mayka.talamyd.common.util.MyResult
 import com.mayka.talamyd.utils.coroutineScope
 import kotlinx.coroutines.launch

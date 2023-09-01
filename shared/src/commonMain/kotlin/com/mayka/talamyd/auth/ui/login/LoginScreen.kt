@@ -15,7 +15,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,6 +37,7 @@ import com.mayka.talamyd.common.ui.CustomTextField
 import dev.icerock.moko.resources.compose.stringResource
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
@@ -46,60 +49,69 @@ fun LoginScreen(
 ) {
 
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Column(
-            modifier = modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .background(
-                    color = if (isSystemInDarkTheme()) {
-                        MaterialTheme.colorScheme.background
-                    } else {
-                        MaterialTheme.colorScheme.surface
-                    }
-                )
-                .padding(
-                    top = ExtraLargeSpacing + LargeSpacing,
-                    start = LargeSpacing + MediumSpacing,
-                    end = LargeSpacing + MediumSpacing,
-                    bottom = LargeSpacing
-                ),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(LargeSpacing)
-        ) {
-            CustomTextField(
-                value = uiState.email,
-                onValueChange = onEmailChange,
-                hint = stringResource(SharedRes.strings.hint_email),
-                keyboardType = KeyboardType.Email
-            )
+        Column {
 
-            CustomTextField(
-                value = uiState.password,
-                onValueChange = onPasswordChange,
-                hint = stringResource(SharedRes.strings.hint_password),
-                keyboardType = KeyboardType.Password,
-                isPasswordTextField = true
-            )
+            CenterAlignedTopAppBar(title = {
 
-            Button(
-                onClick = {
-                    onLoginClick()
-                },
-                modifier = modifier
-                    .fillMaxWidth()
-                    .height(ButtonHeight),
-                elevation = ButtonDefaults.buttonElevation(
-                    defaultElevation = 0.dp
-                ),
-                shape = MaterialTheme.shapes.medium
-            ) {
-                Text(text = stringResource(SharedRes.strings.btn_label_login))
             }
+            )
 
-            GoToSignup(modifier) {
-                onNavigateToSignup()
+            Column(
+                modifier = modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .background(
+                        color = if (isSystemInDarkTheme()) {
+                            MaterialTheme.colorScheme.background
+                        } else {
+                            MaterialTheme.colorScheme.surface
+                        }
+                    )
+                    .padding(
+                        top = ExtraLargeSpacing + LargeSpacing,
+                        start = LargeSpacing + MediumSpacing,
+                        end = LargeSpacing + MediumSpacing,
+                        bottom = LargeSpacing
+                    ),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(LargeSpacing)
+            ) {
+                CustomTextField(
+                    value = uiState.email,
+                    onValueChange = onEmailChange,
+                    hint = stringResource(SharedRes.strings.hint_email),
+                    keyboardType = KeyboardType.Email
+                )
+
+                CustomTextField(
+                    value = uiState.password,
+                    onValueChange = onPasswordChange,
+                    hint = stringResource(SharedRes.strings.hint_password),
+                    keyboardType = KeyboardType.Password,
+                    isPasswordTextField = true
+                )
+
+                Button(
+                    onClick = {
+                        onLoginClick()
+                    },
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .height(ButtonHeight),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 0.dp
+                    ),
+                    shape = MaterialTheme.shapes.medium
+                ) {
+                    Text(text = stringResource(SharedRes.strings.btn_label_login))
+                }
+
+                GoToSignup(modifier) {
+                    onNavigateToSignup()
+                }
             }
         }
+
 
         if (uiState.isAuthenticating) {
             CircularProgressIndicator()

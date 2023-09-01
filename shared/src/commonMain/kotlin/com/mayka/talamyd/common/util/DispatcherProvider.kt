@@ -3,7 +3,7 @@ package com.mayka.talamyd.common.util
 
 import kotlinx.coroutines.CoroutineDispatcher
 
-internal interface DispatcherProvider {
+interface DispatcherProvider {
     val io: CoroutineDispatcher
     val main: CoroutineDispatcher
 }

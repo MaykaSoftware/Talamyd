@@ -59,6 +59,9 @@ class TalamydAuthComponentImpl(
                     componentContext,
                     onSignupSuccess = {
                         navigation.pop()
+                    },
+                    onCloseClick = {
+                        navigation.pop()
                     }
                 )
             )

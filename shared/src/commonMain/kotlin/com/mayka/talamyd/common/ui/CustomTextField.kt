@@ -2,6 +2,11 @@ package com.mayka.talamyd.common.ui
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.HideSource
+import androidx.compose.material.icons.filled.Password
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -15,12 +20,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
+import dev.icerock.moko.resources.compose.painterResource
 
 @Composable
 fun CustomTextField(
@@ -51,15 +56,15 @@ fun CustomTextField(
             unfocusedIndicatorColor = Color.Transparent,
             focusedIndicatorColor = Color.Transparent
         ),
-//        trailingIcon = if (isPasswordTextField){
-//            {
-//                PasswordEyeIcon(isPasswordVisible = isPasswordVisible) {
-//                    isPasswordVisible = !isPasswordVisible
-//                }
-//            }
-//        }else{
-//            null
-//        },
+        trailingIcon = if (isPasswordTextField){
+            {
+                PasswordEyeIcon(isPasswordVisible = isPasswordVisible) {
+                    isPasswordVisible = !isPasswordVisible
+                }
+            }
+        }else{
+            null
+        },
         visualTransformation = if (isPasswordTextField) {
             if (isPasswordVisible) {
                 VisualTransformation.None
@@ -77,7 +82,6 @@ fun CustomTextField(
 
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun PasswordEyeIcon(
     isPasswordVisible: Boolean,
@@ -85,13 +89,13 @@ fun PasswordEyeIcon(
 ) {
 
     val image = if (isPasswordVisible) {
-        painterResource("show-eye-icon-filled.xml")
+        Icons.Filled.Visibility
     } else {
-        painterResource("hide-eye-icon-filled.xml")
+        Icons.Filled.VisibilityOff
     }
 
     IconButton(onClick = onPasswordVisibilityToggle) {
-        Icon(painter = image, contentDescription = null)
+        Icon(image, null)
     }
 
 }

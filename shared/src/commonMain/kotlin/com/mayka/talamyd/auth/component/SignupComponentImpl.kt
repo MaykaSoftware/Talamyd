@@ -10,7 +10,7 @@ import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.arkivanov.essenty.statekeeper.consume
 import com.badoo.reaktive.disposable.scope.DisposableScope
-import com.mayka.talamyd.auth.domain.usecase.SignUpUseCase
+import com.mayka.talamyd.auth.domain.SignUpUseCase
 import com.mayka.talamyd.common.util.MyResult
 import com.mayka.talamyd.utils.coroutineScope
 import kotlinx.coroutines.launch
@@ -33,11 +33,13 @@ interface SignupComponent {
     fun onUsernameChanged(username: String)
     fun onEmailChanged(email: String)
     fun onPasswordChanged(password: String)
+    fun onCloseClicked()
 }
 
 class SignupComponentImpl(
     componentContext: ComponentContext,
-    private val onSignupSuccess: () -> Unit
+    private val onSignupSuccess: () -> Unit,
+    private val onCloseClick: () -> Unit
 ) : SignupComponent, KoinComponent, ComponentContext by componentContext {
 
     private val handler =
@@ -94,6 +96,10 @@ class SignupComponentImpl(
         handler.state.update {
             it.copy(password = password)
         }
+    }
+
+    override fun onCloseClicked() {
+        onCloseClick()
     }
 
     private companion object {

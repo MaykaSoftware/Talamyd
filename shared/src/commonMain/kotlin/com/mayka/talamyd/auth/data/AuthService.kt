@@ -5,19 +5,15 @@ import io.ktor.client.call.body
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 
-internal class AuthService : KtorApi() {
+class AuthService : KtorApi() {
     suspend fun signUp(request: SignUpRequest): AuthResponse = client.post {
         endPoint(path = "signup")
         setBody(request)
     }.body()
 
     suspend fun signIn(request: SignInRequest): AuthResponse = client.post {
-        endPoint(path = "login")
+        endPoint("login")
         setBody(request)
     }.body()
 
-    suspend fun refresh(request: RefreshTokenRequest): RefreshTokenResponse = client.post {
-        endPoint(path = "refresh")
-        setBody(request)
-    }.body()
 }

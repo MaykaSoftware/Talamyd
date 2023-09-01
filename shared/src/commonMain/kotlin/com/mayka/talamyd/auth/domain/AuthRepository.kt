@@ -1,7 +1,7 @@
-package com.mayka.talamyd.auth.domain.repository
+package com.mayka.talamyd.auth.domain
 
-import com.mayka.talamyd.auth.domain.model.AuthResultData
-import com.mayka.talamyd.auth.domain.model.TokenResultData
+import com.mayka.talamyd.auth.data.AuthResultData
+import com.mayka.talamyd.auth.data.TokenResultData
 import com.mayka.talamyd.common.util.MyResult
 
 internal interface AuthRepository {
@@ -13,6 +13,4 @@ internal interface AuthRepository {
     ): MyResult<AuthResultData>
 
     suspend fun signIn(email: String, password: String): MyResult<AuthResultData>
-
-    suspend fun refreshToken(refreshToken: String): MyResult<TokenResultData>
 }
