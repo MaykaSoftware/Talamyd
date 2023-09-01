@@ -1,7 +1,6 @@
 package com.mayka.talamyd.auth.domain
 
 import com.mayka.talamyd.auth.data.AuthResultData
-import com.mayka.talamyd.auth.data.TokenResultData
 import com.mayka.talamyd.common.util.MyResult
 
 internal interface AuthRepository {

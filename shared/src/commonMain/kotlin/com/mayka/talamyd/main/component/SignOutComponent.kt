@@ -25,5 +25,4 @@ class SignOutComponentImpl(
     override fun onSignOutClicked() {
         onSignOut()
     }
-
 }

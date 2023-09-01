@@ -22,9 +22,10 @@ inline fun <reified T> Scope.getWith(vararg params: Any?): T {
     return get(parameters = { parametersOf(*params) })
 }
 
-
 private val utilityModule = module {
     factory { provideDispatcher() }
 }
+
 expect val platformModule: Module
+
 fun getSharedModules() = listOf(authModule, utilityModule, platformModule, coreModule, courseModule)

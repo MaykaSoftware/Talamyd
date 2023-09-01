@@ -52,7 +52,6 @@ class SignupComponentImpl(
     private val coroutineScope = coroutineScope()
     private val signupUseCase: SignUpUseCase by inject()
 
-    private val _uiState = MutableValue(SignUpUiState())
     override val uiState: Value<SignUpUiState> = handler.state
 
     override fun onSignupClicked() {

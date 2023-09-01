@@ -25,7 +25,6 @@ fun TabContainerScaffold(
     topBarActions: @Composable RowScope.() -> Unit,
     content: @Composable BoxScope.() -> Unit,
 ) {
-
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(

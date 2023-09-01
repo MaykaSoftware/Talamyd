@@ -10,13 +10,9 @@ import androidx.compose.ui.Modifier
 fun ProfileScreen(
     modifier: Modifier = Modifier
 ) {
-
     Box(
         modifier = modifier.fillMaxSize()
     ) {
-
         Text(text = "ProfileScreen")
-
     }
-
 }
