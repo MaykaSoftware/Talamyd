@@ -10,10 +10,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.mayka.talamyd.common.theming.SmallElevation
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
-
-@OptIn(ExperimentalResourceApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBar(
     modifier: Modifier,
@@ -33,13 +30,13 @@ fun AppBar(
             },
             navigationIcon =
             {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        painter = painterResource("compose-multiplatform.xml"),
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface
-                    )
-                }
+//                IconButton(onClick = { /*TODO*/ }) {
+//                    Icon(
+//                        painter = painterResource("compose-multiplatform.xml"),
+//                        contentDescription = null,
+//                        tint = MaterialTheme.colorScheme.onSurface
+//                    )
+//                }
             }
 
         )

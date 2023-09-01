@@ -13,7 +13,7 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
-import com.mayka.talamyd.home.component.HomeComponentImpl
+import com.mayka.talamyd.home.component.CoursesComponentImpl
 import com.mayka.talamyd.price.component.PriceComponentImpl
 import com.mayka.talamyd.settings.component.SettingsComponentImpl
 
@@ -27,7 +27,7 @@ interface TalamydTabComponent {
     fun onSignOutClicked()
 
     sealed class Child {
-        class HomeChild(val component: HomeComponentImpl) : Child()
+        class HomeChild(val component: CoursesComponentImpl) : Child()
         class PricesChild(val component: PriceComponentImpl) : Child()
         class SettingsChild(val component: SettingsComponentImpl) : Child()
     }
@@ -45,7 +45,7 @@ class TalamydTabComponentImpl(
         componentContext: ComponentContext
     ): TalamydTabComponent.Child =
         when (config) {
-            Config.Home -> TalamydTabComponent.Child.HomeChild(HomeComponentImpl(componentContext))
+            Config.Home -> TalamydTabComponent.Child.HomeChild(CoursesComponentImpl(componentContext))
             Config.Price -> TalamydTabComponent.Child.PricesChild(
                 PriceComponentImpl(
                     componentContext

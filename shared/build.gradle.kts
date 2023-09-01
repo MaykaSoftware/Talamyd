@@ -22,7 +22,7 @@ kotlin {
 
             export(libs.decompose)
             export(libs.essenty.lifecycle)
-            export(libs.moko.resources)
+            export(libs.moko.resources.compose.ios)
         }
     }
 
@@ -116,7 +116,6 @@ android {
 dependencies {
     implementation(libs.material3.core)
     implementation(libs.androidx.ui)
-    commonMainApi(libs.moko.resources)
     commonMainApi(libs.moko.resources.compose.ios)
 }
 

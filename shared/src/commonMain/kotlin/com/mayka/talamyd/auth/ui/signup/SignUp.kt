@@ -16,6 +16,7 @@ fun SignUp(
         onUsernameChange = component::onUsernameChanged,
         onEmailChange = component::onEmailChanged,
         onPasswordChange = component::onPasswordChanged,
-        onSignUpClick = component::onSignupClicked
+        onSignUpClick = component::onSignupClicked,
+        onCloseClicked = component::onCloseClicked
     )
 }

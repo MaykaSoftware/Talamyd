@@ -1,22 +1,28 @@
 package com.mayka.talamyd.common.data
 
 import com.mayka.talamyd.auth.data.RefreshTokenRequest
-import com.mayka.talamyd.auth.domain.model.TokenResultData
+import com.mayka.talamyd.auth.data.RefreshTokenResponse
+import com.mayka.talamyd.auth.data.TokenResultData
 import com.mayka.talamyd.utils.SharedSettingsHelper
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.auth.Auth
 import io.ktor.client.plugins.auth.providers.BearerTokens
+import io.ktor.client.plugins.auth.providers.RefreshTokensParams
 import io.ktor.client.plugins.auth.providers.bearer
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.HttpRequestBuilder
-import io.ktor.client.request.get
-import io.ktor.client.request.header
+import io.ktor.client.request.accept
+import io.ktor.client.request.post
+import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
+import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
 import io.ktor.http.path
 import io.ktor.http.takeFrom
@@ -27,10 +33,16 @@ import org.koin.core.component.inject
 
 private const val BASE_URL = "http://192.168.2.3:8080/"
 
-internal abstract class KtorApi : KoinComponent {
+abstract class KtorApi : KoinComponent {
     private val sharedSettingsHelper: SharedSettingsHelper by inject()
 
     val client = HttpClient {
+        defaultRequest {
+            url(BASE_URL)
+            contentType(ContentType.Application.Json)
+            accept(ContentType.Application.Json)
+        }
+
         install(Logging) {
             level = LogLevel.ALL
             logger = object : Logger {
@@ -50,18 +62,20 @@ internal abstract class KtorApi : KoinComponent {
         install(Auth) {
             bearer {
                 refreshTokens {
-                    val token = client.get {
+                    val token = client.post {
                         markAsRefreshTokenRequest()
                         endPoint(path = "refresh")
-                        parameter("", RefreshTokenRequest(sharedSettingsHelper.refreshToken))
-                    }.body<TokenResultData>()
+                        setBody(RefreshTokenRequest(sharedSettingsHelper.refreshToken))
+                    }.body<RefreshTokenResponse>()
 
-                    sharedSettingsHelper.token = token.accessToken
-                    sharedSettingsHelper.refreshToken = token.refreshToken.refreshToken
+                    println("__TOKEN access = ${token.data?.accessToken}")
+                    println("__TOKEN refresh = ${token.data?.refreshTokenData?.refreshToken}")
+                    sharedSettingsHelper.token = "${token.data?.accessToken}"
+                    sharedSettingsHelper.refreshToken = token.data?.refreshTokenData?.refreshToken ?: ""
 
                     BearerTokens(
-                        accessToken = token.accessToken,
-                        refreshToken = token.refreshToken.refreshToken
+                        accessToken = "${token.data?.accessToken}",
+                        refreshToken = token.data?.refreshTokenData?.refreshToken ?: ""
                     )
                 }
             }
@@ -74,6 +88,10 @@ internal abstract class KtorApi : KoinComponent {
             path(path)
             contentType(ContentType.Application.Json)
         }
-        header("Authorization", sharedSettingsHelper.token)
+       // if(!path.contains("refresh")) {
+            headers {
+                append(HttpHeaders.Authorization, sharedSettingsHelper.token)
+            }
+       // }
     }
 }

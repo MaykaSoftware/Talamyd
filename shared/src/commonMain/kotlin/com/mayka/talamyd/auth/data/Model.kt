@@ -4,33 +4,33 @@ import kotlinx.serialization.Serializable
 
 //Request
 @Serializable
-internal data class SignUpRequest(
+data class SignUpRequest(
     val name: String,
     val email: String,
     val password: String
 )
 
 @Serializable
-internal data class SignInRequest(
+data class SignInRequest(
     val email: String,
     val password: String
 )
 
 @Serializable
-internal data class RefreshTokenRequest(
+data class RefreshTokenRequest(
     val refreshToken: String
 )
 
 
 //Response
 @Serializable
-internal data class AuthResponse(
+data class AuthResponse(
     val data: AuthResponseData? = null,
     val errorMessage: String? = null
 )
 
 @Serializable
-internal data class AuthResponseData(
+data class AuthResponseData(
     val id: Int,
     val name: String,
     val bio: String,
@@ -39,19 +39,19 @@ internal data class AuthResponseData(
 )
 
 @Serializable
-internal data class RefreshTokenResponse(
+data class RefreshTokenResponse(
     val data: RefreshResponseData?,
     val errorMessage: String?
 )
 
 @Serializable
-internal data class RefreshResponseData(
+data class RefreshResponseData(
     val accessToken: String,
     val refreshTokenData: RefreshTokenResponseData
 )
 
 @Serializable
-internal data class RefreshTokenResponseData(
+data class RefreshTokenResponseData(
     val refreshToken: String,
     val expiresAt: Long
 )
