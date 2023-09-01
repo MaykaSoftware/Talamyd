@@ -15,5 +15,4 @@ class AuthService : KtorApi() {
         endPoint("login")
         setBody(request)
     }.body()
-
 }

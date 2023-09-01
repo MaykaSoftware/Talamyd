@@ -23,9 +23,7 @@ class TalamydMainComponentImpl(
     componentContext: ComponentContext,
     private val onSignOut: () -> Unit,
 ) : TalamydMainComponent, ComponentContext by componentContext {
-
     private val navigation = StackNavigation<Config>()
-
     override val stack: Value<ChildStack<*, TalamydMainComponent.Child>> =
         childStack(
             source = navigation,
@@ -55,7 +53,7 @@ class TalamydMainComponentImpl(
 
     @Parcelize
     private sealed class Config : Parcelable {
-        object Tab : Config()
-        object Settings : Config()
+        data object Tab : Config()
+        data object Settings : Config()
     }
 }

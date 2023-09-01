@@ -48,9 +48,7 @@ fun MainViewController(
                     color = MaterialTheme.colorScheme.background,
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    ContentView(
-                        component = root,
-                    )
+                    ContentView(component = root)
                 }
             }
         }

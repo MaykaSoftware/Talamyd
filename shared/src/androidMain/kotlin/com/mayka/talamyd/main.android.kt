@@ -15,9 +15,7 @@ fun ContentController(component: TalamydRootComponent) {
             color = MaterialTheme.colorScheme.background,
             modifier = Modifier.fillMaxSize()
         ) {
-            ContentView(
-                component = component,
-            )
+            ContentView(component = component)
         }
     }
 }

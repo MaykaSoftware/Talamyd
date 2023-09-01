@@ -23,7 +23,7 @@ interface TalamydRootComponent {
     fun onSignOut()
 
     sealed class Child {
-        object Loading : Child()
+        data object Loading : Child()
         class Auth(val component: TalamydAuthComponent) : Child()
         class Main(val component: TalamydMainComponent) : Child()
     }

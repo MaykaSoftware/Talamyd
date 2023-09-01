@@ -37,7 +37,6 @@ class TalamydTabComponentImpl(
     componentContext: ComponentContext,
     private val onSignOut: () -> Unit
 ) : TalamydTabComponent, ComponentContext by componentContext {
-
     private val navigation = StackNavigation<Config>()
 
     private fun child(
@@ -51,7 +50,6 @@ class TalamydTabComponentImpl(
                     componentContext
                 )
             )
-
             Config.Setting -> TalamydTabComponent.Child.SettingsChild(
                 SettingsComponentImpl(
                     componentContext
@@ -112,8 +110,8 @@ class TalamydTabComponentImpl(
 
     @Parcelize
     private sealed class Config : Parcelable {
-        object Home : Config()
-        object Price : Config()
-        object Setting : Config()
+        data object Home : Config()
+        data object Price : Config()
+        data object Setting : Config()
     }
 }

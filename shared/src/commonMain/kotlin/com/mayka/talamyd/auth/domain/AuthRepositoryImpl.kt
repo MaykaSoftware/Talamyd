@@ -2,12 +2,9 @@ package com.mayka.talamyd.auth.domain
 
 import com.mayka.talamyd.auth.data.AuthResultData
 import com.mayka.talamyd.auth.data.AuthService
-import com.mayka.talamyd.auth.data.RefreshTokenRequest
 import com.mayka.talamyd.auth.data.SignInRequest
 import com.mayka.talamyd.auth.data.SignUpRequest
-import com.mayka.talamyd.auth.data.TokenResultData
 import com.mayka.talamyd.auth.data.toAuthResultData
-import com.mayka.talamyd.auth.data.toTokenPairResultData
 import com.mayka.talamyd.common.util.DispatcherProvider
 import com.mayka.talamyd.common.util.MyResult
 import kotlinx.coroutines.withContext
@@ -16,6 +13,7 @@ class AuthRepositoryImpl(
     private val dispatcher: DispatcherProvider,
     private val authService: AuthService
 ) : AuthRepository {
+
     override suspend fun signUp(
         name: String,
         email: String,

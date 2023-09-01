@@ -50,11 +50,7 @@ fun LoginScreen(
 
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column {
-
-            CenterAlignedTopAppBar(title = {
-
-            }
-            )
+            CenterAlignedTopAppBar(title = {})
 
             Column(
                 modifier = modifier
@@ -92,9 +88,7 @@ fun LoginScreen(
                 )
 
                 Button(
-                    onClick = {
-                        onLoginClick()
-                    },
+                    onClick = { onLoginClick() },
                     modifier = modifier
                         .fillMaxWidth()
                         .height(ButtonHeight),
@@ -111,7 +105,6 @@ fun LoginScreen(
                 }
             }
         }
-
 
         if (uiState.isAuthenticating) {
             CircularProgressIndicator()

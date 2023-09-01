@@ -3,8 +3,6 @@ package com.mayka.talamyd.common.ui
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.HideSource
-import androidx.compose.material.icons.filled.Password
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
@@ -20,12 +18,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import dev.icerock.moko.resources.compose.painterResource
 
 @Composable
 fun CustomTextField(
@@ -37,7 +33,6 @@ fun CustomTextField(
     isSingleLine: Boolean = true,
     hint: String
 ) {
-
     var isPasswordVisible by remember {
         mutableStateOf(false)
     }
@@ -56,13 +51,13 @@ fun CustomTextField(
             unfocusedIndicatorColor = Color.Transparent,
             focusedIndicatorColor = Color.Transparent
         ),
-        trailingIcon = if (isPasswordTextField){
+        trailingIcon = if (isPasswordTextField) {
             {
                 PasswordEyeIcon(isPasswordVisible = isPasswordVisible) {
                     isPasswordVisible = !isPasswordVisible
                 }
             }
-        }else{
+        } else {
             null
         },
         visualTransformation = if (isPasswordTextField) {
@@ -79,7 +74,6 @@ fun CustomTextField(
         },
         shape = MaterialTheme.shapes.medium
     )
-
 }
 
 @Composable
@@ -87,7 +81,6 @@ fun PasswordEyeIcon(
     isPasswordVisible: Boolean,
     onPasswordVisibilityToggle: () -> Unit
 ) {
-
     val image = if (isPasswordVisible) {
         Icons.Filled.Visibility
     } else {
@@ -97,5 +90,4 @@ fun PasswordEyeIcon(
     IconButton(onClick = onPasswordVisibilityToggle) {
         Icon(image, null)
     }
-
 }

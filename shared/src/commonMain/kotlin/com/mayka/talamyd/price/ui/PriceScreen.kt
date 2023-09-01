@@ -13,12 +13,10 @@ fun PriceScreen(
     modifier: Modifier = Modifier,
     topBarActions: @Composable RowScope.() -> Unit,
 ) {
-
     TabContainerScaffold(
         title = stringResource(SharedRes.strings.label_tab_price),
         topBarActions = topBarActions,
     ) {
         Text(text = "PriceScreen")
     }
-
 }

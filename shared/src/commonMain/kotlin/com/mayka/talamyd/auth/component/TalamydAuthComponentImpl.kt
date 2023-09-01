@@ -69,8 +69,8 @@ class TalamydAuthComponentImpl(
 
     @Parcelize
     sealed class Config : Parcelable {
-        object Signup : Config()
-        object Login : Config()
-        object Guest : Config()
+        data object Signup : Config()
+        data object Login : Config()
+        data object Guest : Config()
     }
 }

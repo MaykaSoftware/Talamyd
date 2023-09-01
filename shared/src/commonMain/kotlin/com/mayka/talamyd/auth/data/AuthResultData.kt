@@ -11,8 +11,6 @@ data class AuthResultData(
     val token: TokenResultData
 )
 
-
-
 @Serializable
 data class TokenResultData(
     val accessToken: String? = null,
@@ -24,4 +22,3 @@ data class RefreshTokenResultData(
     val refreshToken: String? = null,
     val expireAt: Long? = null
 )
-

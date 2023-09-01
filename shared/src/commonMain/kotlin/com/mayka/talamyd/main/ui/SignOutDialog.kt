@@ -22,7 +22,6 @@ fun SignOutDialog(dialogComponent: SignOutComponent) {
     Dialog(onDismissRequest = {
         dialogComponent.onDismissClicked()
     }) {
-
         Card {
             Column(modifier = Modifier.padding(8.dp)) {
                 Text(
